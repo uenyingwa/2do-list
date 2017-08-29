@@ -28,6 +28,18 @@ gem 'puma', '~> 3.7'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  gem 'pry'
+  # Use rspec for testing
+  gem 'rspec-rails', '~> 3.5'
+  # Use factory girl for creating test data
+  gem 'factory_girl_rails', '~> 4.0'
+  # Provides RSpec with additional matchers
+  gem 'shoulda-matchers', '~> 3.1'
+  # Use to generate fake data
+  gem 'faker'
+  # Use to clean database
+  gem 'database_cleaner'
 end
 
 group :development do

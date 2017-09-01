@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :todo do
-    title "MyString"
-    created_by "Ulo"
+    title { Faker::Lorem.word }
+    created_by { Faker::Number.number(5) }
   end
 end

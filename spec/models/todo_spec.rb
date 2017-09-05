@@ -7,6 +7,6 @@ RSpec.describe Todo, type: :model do
   end
 
   context 'when validating associations' do
-    it { is_expected.to have_many(:items) }
+    it { is_expected.to have_many(:items).dependent(:destroy) }
   end
 end

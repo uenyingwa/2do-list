@@ -1,8 +1,6 @@
 require 'rails_helper'
-require './spec/support/request_spec_helper'
 
 RSpec.describe 'Todos API', type: :request do
-  include RequestSpecHelper
   let!(:todos) { create_list(:todo, 10) }
   let(:todo_id) { todos.first.id }
 

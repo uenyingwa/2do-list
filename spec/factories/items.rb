@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :item do
-    name { Faker::GamesOfThrones.character }
+    name { Faker::GameOfThrones.character }
     done false
     todo_id nil
   end

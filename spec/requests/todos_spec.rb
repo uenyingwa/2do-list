@@ -1,11 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Todos API', type: :request do
-  let!(:todos) { create_list(:todo, 10) }
+  let(:user) { create(:user) }
+  let!(:todos) { create_list(:todo, 10, created_by: user.id) }
   let(:todo_id) { todos.first.id }
+  # authorize the request
+  let(:headers) { valid_headers }
 
   describe 'GET /todos' do
-    before { get '/todos' }
+    before { get '/todos', params: {}, headers: headers }
 
     it 'returns todos' do
       expect(json).not_to be_empty
@@ -18,7 +21,7 @@ RSpec.describe 'Todos API', type: :request do
   end
 
   describe 'GET /todos/:id' do
-    before { get "/todos/#{todo_id}" }
+    before { get "/todos/#{todo_id}", params: {}, headers: headers }
 
     context 'when the record exists' do
       it 'returns the todo' do
@@ -33,6 +36,7 @@ RSpec.describe 'Todos API', type: :request do
 
     context 'when the record does not exist' do
       let(:todo_id) { 100 }
+      # before { get "/todos/#{todo_id}" }
       it 'returns status code 404' do
         expect(response).to have_http_status(404)
       end
@@ -46,10 +50,10 @@ RSpec.describe 'Todos API', type: :request do
   # Test suite for POST /todos
   describe 'POST /todos' do
     # valid payload
-    let(:valid_attributes) { { title: 'Learn Elm', created_by: '1' } }
+    let(:valid_attributes) { { title: 'Learn Elm', created_by: user.id.to_s }.to_json }
 
     context 'when the request is valid' do
-      before { post '/todos', params: valid_attributes }
+      before { post '/todos', params: valid_attributes, headers: headers }
 
       it 'creates a todo' do
         expect(json['title']).to eq('Learn Elm')

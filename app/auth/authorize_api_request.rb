@@ -18,7 +18,7 @@ class AuthorizeApiRequest
     # check if user is in the database
     # memoize user object
     @user ||= User.find(decoded_auth_token[:user_id]) if decoded_auth_token
-      # handle user not found
+    # handle user not found
   rescue ActiveRecord::RecordNotFound => e
     # raise custom error
     raise(
@@ -37,6 +37,6 @@ class AuthorizeApiRequest
     if headers['Authorization'].present?
       return headers['Authorization'].split(' ').last
     end
-      raise(ExceptionHandler::MissingToken, Message.missing_token)
+    raise(ExceptionHandler::MissingToken, Message.missing_token)
   end
 end

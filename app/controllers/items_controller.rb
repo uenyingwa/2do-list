@@ -6,7 +6,8 @@ class ItemsController < ApplicationController
   end
 
   def show
-    json_response(@item)
+    return json_response(@item) if @item
+    json_response({}, :not_found)
   end
 
   def create
@@ -15,8 +16,9 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item.update(item_params)
-    head :no_content
+    updated_item = @item.update(item_params) if @item
+    return json_response(updated_item, :ok) if @item
+    json_response({}, :not_found)
   end
 
   def destroy

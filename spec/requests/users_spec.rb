@@ -10,7 +10,7 @@ RSpec.describe 'Users API', type: :request do
 
   describe 'POST /signup' do
     context 'when valid request' do
-      before { post '/signup', params:valid_attributes.to_json, headers: headers }
+      before { post '/signup', params: valid_attributes.to_json, headers: headers }
 
       it 'creates a new user' do
         expect(response).to have_http_status(201)

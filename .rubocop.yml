@@ -13,3 +13,5 @@ AllCops:
     - "Gemfile"
     - "Gemfile.lock"
     - "app/lib/**/*"
+Documentation:
+  Enabled: false

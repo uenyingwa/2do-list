@@ -23,6 +23,8 @@ gem 'jwt'
 gem 'active_model_serializers', '~>0.10.0'
 # Add pagination
 gem 'will_paginate', '~> 3.1.0'
+# Use to generate fake data
+gem 'faker'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -40,8 +42,6 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   # Provides RSpec with additional matchers
   gem 'shoulda-matchers', '~> 3.1'
-  # Use to generate fake data
-  gem 'faker'
   # Use to clean database
   gem 'database_cleaner'
 end
